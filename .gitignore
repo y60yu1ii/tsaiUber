@@ -96,6 +96,7 @@ public/
 .dynamodb/
 
 .DS_Store
-yarn.lock
+*.lock
+*.tar
 
 # End of https://www.gitignore.io/api/node
