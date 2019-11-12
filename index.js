@@ -22,8 +22,13 @@ router.get('/client', async function (ctx) {
     ctx.response.body = fs.createReadStream('./client.html');
 });
 
-io.on('connect', (client) => {
-    console.log('user connected: ' + client.id);
+io.on('connect', (socket) => {
+    // console.log('user connected: ' + socket.id);
+    socket.on('gpsIn', function (msg) {
+        msg.id = socket.id;
+        console.log('GPS in : ' + JSON.stringify(msg));
+        io.emit('gpsOut', msg);
+    });
 });
 
 io.on('connection', (socket) => {
@@ -31,18 +36,6 @@ io.on('connection', (socket) => {
         console.log('user disconnected');
     });
 });
-
-
-// io.on('connection', (socket) => {
-//     for (let i = 0; i < markers.length; i++) {
-//         socket.emit("marker", markers[i]);
-//     }
-//     socket.on('marker', data => {
-//         markers.push(data);
-//         io.emit("marker", data);
-//     });
-// });
-
 
 app.use(bodyParser());
 app.use(router.routes());

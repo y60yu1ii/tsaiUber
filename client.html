@@ -27,16 +27,29 @@
     <div id="map"></div>
     <script>
         var id;
+        var socket = io();
         var pos = {
             lat: 22.62781,
             lng: 120.3080952
         };
+        var payload = {
+            id: "client",
+            pos: pos,
+            count: 0
+        }
         var map, infoWindow;
         var count = 0;
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: pos.lat, lng: pos.lng },
                 zoom: 6,
+                mapTypeControl: false,
+                zoomControl: true,
+                panControl: false,
+                scaleControl: false,
+                streetViewControl: false,
+                scrollwheel: false,
+                draggable: true
             });
             infoWindow = new google.maps.InfoWindow;
             getLocation();
@@ -65,8 +78,8 @@
 
         function updatePosition(position) {
             if (position) {
-                pos.lat = position.coords.latitude;
-                pos.lng = position.coords.longitude;
+                pos.lat = position.coords.latitude + getRandom(-1, 2) * count * 0.0001;
+                pos.lng = position.coords.longitude + getRandom(-2, 3) * count * 0.0001;
 
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('Your current Location ' + count);
@@ -74,6 +87,10 @@
                 map.setCenter(pos);
                 map.zoom = 16;
                 count++;
+                payload.count = count;
+
+                // e.preventDefault(); // prevents page reloading
+                socket.emit('gpsIn', payload)
             }
         }
         setInterval(function () { updatePosition(getLocation()); }, 5000)
@@ -81,10 +98,10 @@
             return marker;
         }
 
-        $(function () {
-            var socket = io();
-            id = socket.id;
-        });
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        };
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxw5RDK9CDOdyZGDVg4GHxqiP9Oq1GiU0&callback=initMap"
         async defer></script>
