@@ -9,7 +9,7 @@ const server = require('http').createServer(app.callback());
 const fs = require('fs');
 const io = require('socket.io')(server);
 
-const port = 80;
+const port = 3000;
 const markers = [];
 
 router.get('/', async function (ctx) {
@@ -20,6 +20,11 @@ router.get('/', async function (ctx) {
 router.get('/client', async function (ctx) {
     ctx.response.type = 'html';
     ctx.response.body = fs.createReadStream('./client.html');
+});
+
+router.get('/demo', async function (ctx) {
+    ctx.response.type = 'html';
+    ctx.response.body = fs.createReadStream('./demo.html');
 });
 
 io.on('connect', (socket) => {
