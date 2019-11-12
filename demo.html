@@ -78,8 +78,8 @@
 
         function updatePosition(position) {
             if (position) {
-                pos.lat = position.coords.latitude;
-                pos.lng = position.coords.longitude;
+                pos.lat = position.coords.latitude + getRandom(-1, 2) * count * 0.0001;
+                pos.lng = position.coords.longitude + getRandom(-2, 3) * count * 0.0001;
 
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('Your current Location ' + count);
@@ -93,7 +93,7 @@
                 socket.emit('gpsIn', payload)
             }
         }
-        setInterval(function () { updatePosition(getLocation()); }, 5000)
+        setInterval(function () { updatePosition(getLocation()); }, 500)
         function currentPosition() {
             return marker;
         }

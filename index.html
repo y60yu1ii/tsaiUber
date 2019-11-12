@@ -25,8 +25,6 @@
 
 
 <body>
-    <div id="data">----</div>
-    <div id="log">----</div>
     <div id="map"></div>
     <div style="height: 0px;width: 0px;overflow:hidden;">
         <a href="https://icons8.com/icon/86904/tourist-backpack">Tourist Backpack icon by Icons8</a>
@@ -112,10 +110,11 @@
                 actives.forEach((item) => {
                     var point = new google.maps.LatLng(data.pos.lat, data.pos.lng);
                     item.marker.setPosition(point);
-                    if (item.mvcArr.length <= 5) {
+                    if (item.mvcArr.length <= 20) {
                         item.mvcArr.push(point);
                     } else {
                         item.mvcArr.clear();
+                        item.polyOne.clear();
                         item.mvcArr.push(point);
                     }
                     $("#log").html("add get: " + JSON.stringify(item.history));
