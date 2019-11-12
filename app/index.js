@@ -9,7 +9,7 @@ const server = require('http').createServer(app.callback());
 const fs = require('fs');
 const io = require('socket.io')(server);
 
-const port = 3000;
+const port = 80;
 const markers = [];
 
 router.get('/', async function (ctx) {
