@@ -19,8 +19,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/socket.io/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-
 </head>
 
 <body>
@@ -93,7 +91,7 @@
                 socket.emit('gpsIn', payload)
             }
         }
-        setInterval(function () { updatePosition(getLocation()); }, 500)
+        setInterval(function () { updatePosition(getLocation()); }, 300)
         function currentPosition() {
             return marker;
         }

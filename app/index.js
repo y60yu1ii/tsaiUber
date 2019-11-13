@@ -29,14 +29,14 @@ router.get('/demo', async function (ctx) {
 
 io.on('connect', (socket) => {
     // console.log('user connected: ' + socket.id);
+});
+
+io.on('connection', (socket) => {
     socket.on('gpsIn', function (msg) {
         msg.id = socket.id;
         console.log('GPS in : ' + JSON.stringify(msg));
         io.emit('gpsOut', msg);
     });
-});
-
-io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
