@@ -43,6 +43,7 @@ bower_components
 build/Release
 
 # Dependency directories
+app/node_modules/
 node_modules/
 jspm_packages/
 
@@ -98,5 +99,6 @@ public/
 .DS_Store
 *.lock
 *.tar
+
 
 # End of https://www.gitignore.io/api/node

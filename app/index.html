@@ -110,7 +110,7 @@
                 actives.forEach((item) => {
                     var point = new google.maps.LatLng(data.pos.lat, data.pos.lng);
                     item.marker.setPosition(point);
-                    if (item.mvcArr.length <= 20) {
+                    if (item.mvcArr.length <= 30) {
                         item.mvcArr.push(point);
                     } else {
                         item.mvcArr.clear();
@@ -130,16 +130,16 @@
             var marker = new google.maps.Marker({
                 position: point,
                 map: map,
-                icon: icons.car,
+                icon: icons.backpack,
                 label: data.id,
             });
 
             var polyOne = new google.maps.Polyline({
                 path: pathOne,
-                strokeColor: '#880000',
+                strokeColor: '#DB504A',
                 strokeOpacity: 0.8,
-                strokeWeight: 10,
-                geodesic: false,
+                strokeWeight: 2,
+                geodesic: true,
             })
 
             polyOne.setMap(map);
