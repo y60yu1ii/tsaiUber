@@ -107,7 +107,7 @@
                 actives.forEach((item) => {
                     var point = new google.maps.LatLng(data.pos.lat, data.pos.lng);
                     item.marker.setPosition(point);
-                    if (item.mvcArr.length <= 30) {
+                    if (item.mvcArr.length <= 3) {
                         item.mvcArr.push(point);
                     } else {
                         item.mvcArr.clear();
