@@ -29,11 +29,10 @@
         <a href="https://icons8.com/icon/86904/tourist-backpack">Tourist Backpack icon by Icons8</a>
     </div>
     <script>
-        var icons8Base = "https://img.icons8.com/";
+        var smartXringBase = "https://s3-ap-northeast-1.amazonaws.com/smartxring.com/";
         var icons = {
-            backpack: icons8Base + "cotton/64/000000/tourist-backpack--v1.png",
-            car: icons8Base + "color/48/000000/car.png",
-            me: icons8Base + "dusk/64/000000/near-me.png"
+            backpack: smartXringBase + "backpack.png",
+            me: smartXringBase + "compass.png"
         }
         var id;
         var socket = io();
@@ -107,7 +106,7 @@
                 actives.forEach((item) => {
                     var point = new google.maps.LatLng(data.pos.lat, data.pos.lng);
                     item.marker.setPosition(point);
-                    if (item.mvcArr.length <= 3) {
+                    if (item.mvcArr.length <= 30) {
                         item.mvcArr.push(point);
                     } else {
                         item.mvcArr.clear();
